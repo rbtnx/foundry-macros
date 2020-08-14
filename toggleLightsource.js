@@ -17,9 +17,14 @@ new Dialog({
   default: "aus",
   close: html => {
     if (lampeAn) {
-      token.update({
-        dimLight: 40, 
-        brightLight: 20});
+      if (token.data.brightLight == 0) {
+        token.update({
+          dimLight: 40, 
+          brightLight: 20});
+      }
+      else {
+        ui.notifications.warn(`Die Lampe ist bereits an.`);
+      }
     }
     else {
       token.update({
